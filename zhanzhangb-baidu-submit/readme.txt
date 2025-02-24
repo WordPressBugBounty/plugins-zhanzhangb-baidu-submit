@@ -3,7 +3,7 @@ Contributors: ywtywt
 Donate link: https://www.zhanzhangb.cn/
 Tags: Seo,Baidu
 Requires at least: 5.2
-Tested up to: 6.6.1
+Tested up to: 6.7.1
 Stable tag: 1.8.3
 License: GNU General Public License (GPL) version 3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
