@@ -9,12 +9,13 @@ Stable tag: 1.9.0
 License: GNU General Public License (GPL) version 3
 License URI: [GNU General Public License (GPL) version 3](https://www.gnu.org/licenses/gpl-3.0.html)
 
-由 [站长帮](https://www.zhanzhangb.cn/) 开发的 WordPress 轻量化 SEO 解决方案。
+通过 WordPress 原生集成，实现内容更新与百度收录的无缝衔接（ API 实时推送 URL 至百度搜索资源平台，支持普通与快速抓取提交 ），平均提升新页面被百度收录速度 80% 左右。
+
 
 == Description ==
 
 **🚀 核心价值**
-通过 WordPress 原生集成，实现内容更新与百度收录的无缝衔接（通过 API 实时推送 URL 至百度搜索资源平台，支持普通与快速抓取提交。），平均提升新页面被百度收录速度 80% 左右。
+由 [站长帮](https://www.zhanzhangb.cn/) 开发的 WordPress 轻量化 SEO 解决方案。通过 WordPress 原生集成，实现内容更新与百度收录的无缝衔接（ API 实时推送 URL 至百度搜索资源平台，支持普通与快速抓取提交），平均提升新页面被百度收录速度 80% 左右。与流行的 SEO 插件完美兼容，如：Rank Math SEO、Yoast SEO 等。
 
 **🎯 核心功能**
 ✔ **智能收录引擎**
@@ -23,7 +24,7 @@ License URI: [GNU General Public License (GPL) version 3](https://www.gnu.org/li
 – 防重复提交：智能哈希校验机制
 
 ✔ **零污染架构**
-– 独创内存标记技术（对比传统数据库记录方案）
+– 独创内存标记技术（区别于传统数据库记录方案）
 – 卸载后 100% 无残留数据
 – 降低 65% 的数据库读写开销
 
@@ -54,7 +55,7 @@ A: 可在插件设置页面中通过提交日志查看当日剩余配额。
 A: 1. 检查 API Token 有效性  2. 查看日志中的原始响应  3. 错误代码智能指引。
 
 **Q: 是否影响网站性能？**  
-A: 经压力测试，单次提交平均耗时 0.07s。仅发布 / 修改内容提交时触发，对网站前端无任何影响。
+A: 经压力测试，单次提交平均耗时 0.03s。仅发布 / 修改内容提交时触发，对网站前端无任何影响。
 
 == Screenshots ==
 1. `/assets/screenshot-1.png`
@@ -70,7 +71,7 @@ A: 经压力测试，单次提交平均耗时 0.07s。仅发布 / 修改内容�
 * 「核心优化」日志展示优化：默认显示最近 30 条 提交记录，便于快速查看。
 * 「核心优化」：存储路径改为 wp-content/uploads，解决部分站点因权限问题导致的日志创建失败。
 * 「核心优化」Windows 服务器兼容性增强：优化日志读写操作，提升系统稳定性。
-* 「兼容性」完全适配 PHP 8.4，支持新一代服务器环境。
+* 「兼容性」完全适配 PHP 8.4。
 * 「兼容性」最低 WordPress 版本要求提升至 5.5，确保与最新 WordPress 核心深度兼容。
 
 = 1.8.3 =
@@ -110,7 +111,7 @@ A: 经压力测试，单次提交平均耗时 0.07s。仅发布 / 修改内容�
 * 经过两周的测试
 
 == Upgrade Notice ==
-1.8.6 版本包含重要的安全增强，建议所有用户立即升级
+1.9.0 版本包含重要的安全增强，建议所有用户立即升级
 
 == Arbitrary section ==
 
