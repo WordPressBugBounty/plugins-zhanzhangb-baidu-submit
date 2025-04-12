@@ -1,4 +1,5 @@
 <?php
+// includes/class-submit-api.php
 class Zhanzhangb_Baidu_Submit_API {
     private $logger;
     private $utils;
@@ -52,6 +53,8 @@ class Zhanzhangb_Baidu_Submit_API {
             if ($success_normal || $success_realtime) {
                 $this->utils->record_submission($post_id, $success_normal, $success_realtime);
                 $this->set_submission_lock($url);
+            } else {
+
             }
         }
     }
@@ -110,10 +113,9 @@ class Zhanzhangb_Baidu_Submit_API {
 
         return in_array($post_type, $selected_types);
     }
-
     private function is_recent_submission($url) {
         $cache_key = 'zh_submit_' . md5($url);
-        return (bool) wp_cache_get($cache_key, 'zhanzhangb_baidu_submit');
+        return (bool) wp_cache_get($cache_key, 'zhanzhangb_baidu_submit'); 
     }
     
     private function set_submission_lock($url) {

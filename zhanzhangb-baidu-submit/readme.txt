@@ -4,121 +4,117 @@ Donate link: [站长帮](https://www.zhanzhangb.cn/)
 Tags: SEO, Baidu, 收录提交
 Requires at least: 5.5
 Requires PHP: 7.0
-Tested up to: 6.7.2
-Stable tag: 1.9.0
+Tested up to: 6.8
+Stable tag: 1.9.1
 License: GNU General Public License (GPL) version 3
 License URI: [GNU General Public License (GPL) version 3](https://www.gnu.org/licenses/gpl-3.0.html)
 
-通过 WordPress 原生集成，实现内容更新与百度收录的无缝衔接（ API 实时推送 URL 至百度搜索资源平台，支持普通与快速抓取提交 ），平均提升新页面被百度收录速度 80% 左右。
 
+WordPress-native integration boosts Baidu indexing speed by ~80% via seamless content sync.
 
 == Description ==
 
-**🚀 核心价值**
-由 [站长帮](https://www.zhanzhangb.cn/) 开发的 WordPress 轻量化 SEO 解决方案。通过 WordPress 原生集成，实现内容更新与百度收录的无缝衔接（ API 实时推送 URL 至百度搜索资源平台，支持普通与快速抓取提交），平均提升新页面被百度收录速度 80% 左右。与流行的 SEO 插件完美兼容，如：Rank Math SEO、Yoast SEO 等。
+**🚀 Core Value**  
+A lightweight SEO solution for WordPress developed by [Zhanzhangb](https://www.zhanzhangb.cn/). Through native WordPress integration, it enables seamless synchronization between content updates and Baidu indexing (API pushes URLs to Baidu Search Resource Platform in real-time, supporting regular and fast crawling submissions). It also supports time-factor structured data for Baidu and Toutiao Search, improving the speed of new page indexing by Baidu by approximately 80% on average. Fully compatible with popular SEO plugins like Rank Math SEO and Yoast SEO.
 
-**🎯 核心功能**
-✔ **智能收录引擎**
-– 自动触发：文章 / 页面发布 / 更新时实时推送
-– 双通道支持：普通收录 + 快速抓取 API
-– 防重复提交：智能哈希校验机制
+**🎯 Core Features**  
+✔ **Smart Indexing Engine**  
+– Auto-trigger: Real-time submission upon post/page publishing or updating  
+– Dual-channel support: Regular indexing + fast crawling API  
+– Time-factor data: Supports time-factor structured data for Baidu and Toutiao Search  
+– Anti-duplicate submission: Intelligent hash verification mechanism  
 
-✔ **零污染架构**
-– 独创内存标记技术（区别于传统数据库记录方案）
-– 卸载后 100% 无残留数据
-– 降低 65% 的数据库读写开销
+✔ **Zero-Pollution Architecture**  
+– Proprietary memory tagging technology (unlike traditional database recording solutions)  
+– 100% no residual data after uninstallation  
+– Reduces database read/write overhead by 65%  
 
-✔ **数据驾驶舱**
-– 实时显示：当日成功提交量 / 剩余配额
-– 日志系统：保留最近 30 条详细提交记录
-– 错误分析：自动解析百度 API 错误代码
+✔ **Data Dashboard**  
+– Real-time display: Daily successful submissions / remaining quota  
+– Log system: Retains the latest 30 detailed submission records  
+– Error analysis: Automatically deciphers Baidu API error codes  
 
-✔ **企业级扩展性**
-– 支持自定义文章类型 (CPT)
-– 开放开发者 Hook：`zhanzhangb_pre_submit` / `zhanzhangb_post_submit`
+✔ **Enterprise-Grade Scalability**  
+– Supports custom post types (CPT): e.g., WooCommerce product pages.  
 
-[👉 查看功能演示与技术文档](https://www.zhanzhangb.cn/zhanzhangb-baidu-submit)
+[👉 View Demo & Technical Documentation](https://www.zhanzhangb.cn/zhanzhangb-baidu-submit)  
 
-== Installation ==
+== Installation ==  
 
-**📥 三步极速部署**
-1. 在 WordPress 后台插件目录搜索「自动提交百度收录插件」
-2. 启用插件后，进入 [设置] -> [自动提交百度收录设置]
-3. 输入您的百度 API Token（在 [搜索资源平台](https://ziyuan.baidu.com/) 获取）
+**📥 3-Step Quick Deployment**  
+1. Search for "Baidu Auto-Submit Plugin" in the WordPress plugin directory.  
+2. After activation, go to [Settings] -> [Baidu Auto-Submit Settings].  
+3. Enter your Baidu API Token (obtained from the [Search Resource Platform](https://ziyuan.baidu.com/)).  
 
-== Frequently Asked Questions ==
+== Frequently Asked Questions ==  
 
-**Q: 如何查看每日提交配额？**  
-A: 可在插件设置页面中通过提交日志查看当日剩余配额。
+**Q: How to check daily submission quota?**  
+A: Navigate to the plugin settings page and view the remaining quota in the submission logs.  
 
-**Q: 提交失败如何排查？**  
-A: 1. 检查 API Token 有效性  2. 查看日志中的原始响应  3. 错误代码智能指引。
+**Q: How to troubleshoot submission failures?**  
+A: 1. Verify API Token validity. 2. Check raw responses in logs. 3. Follow error code guidance.  
 
-**Q: 是否影响网站性能？**  
-A: 经压力测试，单次提交平均耗时 0.03s。仅发布 / 修改内容提交时触发，对网站前端无任何影响。
+**Q: Does it impact site performance?**  
+A: Stress tests show an average submission time of 0.03s. Triggers only during publishing/editing, with zero frontend impact.  
 
-== Screenshots ==
-1. `/assets/screenshot-1.png`
-2. `/assets/screenshot-2.png`
+== Screenshots ==  
+1. `/assets/screenshot-1.png`  
+2. `/assets/screenshot-2.png`  
 
-== Changelog ==
+== Changelog ==  
 
-= 1.9.0 =
-* 「新增功能」支持自定义文章类型提交：用户可选择需推送至百度的自定义文章类型，实现精准内容管理。
-* 「新增功能」适配百度 API 变更：将“快速收录 API”升级为“快速抓取 API”，确保与百度最新接口规范兼容。
-* 「核心优化」代码架构重构：性能提升 30%，增强安全性，全面符合防止 XSS 攻击的编码标准。
-* 「核心优化」API 提交逻辑优化：提交失败的 URL 自动解除24小时重复提交限制，支持再次发布触发提交（即使未勾选“允许24小时内重复提交”）。
-* 「核心优化」日志展示优化：默认显示最近 30 条 提交记录，便于快速查看。
-* 「核心优化」：存储路径改为 wp-content/uploads，解决部分站点因权限问题导致的日志创建失败。
-* 「核心优化」Windows 服务器兼容性增强：优化日志读写操作，提升系统稳定性。
-* 「兼容性」完全适配 PHP 8.4。
-* 「兼容性」最低 WordPress 版本要求提升至 5.5，确保与最新 WordPress 核心深度兼容。
+= 1.9.1 =  
+* **New Feature**: Added time-factor output options for Baidu/Toutiao Search to enhance search engine recognition of time-sensitive content, compliant with [Baidu's Time-Factor Guidelines](https://ziyuan.baidu.com/college/articleinfo?id=2210).  
+* **Core Improvement**: Added WordPress import state detection to block submissions during data migration (XML/CSV scenarios), avoiding unnecessary triggers.  
+* **Core Improvement**: Optimized settings UI with contextual help tips for better UX.  
+* **Misc**: Emphasized compliance with WordPress native coding standards.  
+* **Bug Fix**: Fixed log file cleanup during plugin uninstallation in v1.9.0, ensuring complete data removal.  
 
-= 1.8.3 =
-* 修复支持 URL
+= 1.9.0 =  
+* **New Feature**: Custom post type (CPT) support for targeted content management.  
+* **New Feature**: Upgraded "Fast Indexing API" to "Fast Crawling API" per Baidu's latest specs.  
+* **Core Optimize**: Codebase refactoring—30% performance boost and XSS attack prevention.  
+* **Core Optimize**: Failed submissions now auto-lift 24-hour duplicate restrictions for retries.  
+* **Core Optimize**: Logs now default to displaying 30 recent entries.  
+* **Core Optimize**: Moved storage to `wp-content/uploads` to resolve permission issues.  
+* **Core Optimize**: Enhanced Windows server compatibility for log operations.  
+* **Compatibility**: Full PHP 8.4 support.  
+* **Compatibility**: Minimum WordPress version raised to 5.5 for deep core integration.  
 
-= 1.8.2 =
-* 新增支持单个页面（page）发布/更新时自动提交。
-* 已修复日志数量限制20条失效的问题，避免日志文件过大占用额外的存储空间。
+= 1.8.3 =  
+* Fixed URL support.  
 
-= 1.8.1 =
-* 增加对日志文件的安全检测，防止被恶意篡改。
-* 修复了快速收录提交的一处BUG。
-* 改进 Win 系统服务器的兼容性。
+= 1.8.2 =  
+* Added auto-submit for single page (post type "page") updates.  
+* Fixed log cap (20 entries) to prevent excessive storage use.  
 
-= 1.8.0 =
-* 兼容性测试至 PHP 8.3，后续版本不再测试 PHP 7.3 以下版本的兼容性。
-* 优化代码，提升兼容性。
-* 修正文档与提示文本。
-* 新增 "允许24小时内重复提交" 选项 ，不建议勾选。默认：同一个URL在24小时内仅提交一次。
-* 调整提交日志的显示顺序。
+= 1.8.1 =  
+* Added log file security checks against tampering.  
+* Fixed a bug in fast indexing submissions.  
+* Improved Windows server compatibility.  
 
-= 1.7.0 =
-* 兼容WordPress 6.4.x。
-* 核心代码重构，执行效率与可靠性更好。
-* 增加日志功能，详细记录每次API提交的成功/失败状态，以便于分析提交结果。
-* 如果文章上次更新在24小时内，不会重复提交，节约API提交额度【百度的API提交配额已调整，部分网站每天仅10条】。
+= 1.8.0 =  
+* Tested for PHP 8.3; dropped compatibility testing for PHP <7.3.  
+* Code optimizations for better compatibility.  
+* Updated documentation and tooltips.  
+* Added "Allow duplicate submissions within 24 hours" option (not recommended).  
+* Reversed log display order.  
 
-= 1.6.0 =
-* 兼容WordPress 6.2.2。
-* 支持旧文章修改/更新后主动推送提交。
+= 1.7.0 =  
+* WordPress 6.4.x compatibility.  
+* Core code refactor for improved efficiency/reliability.  
+* Added detailed logs for submission success/failure analysis.  
+* No duplicate submissions for posts updated within 24 hours (Baidu’s quota now as low as 10/day for some sites).  
 
-= 1.2.0 =
-* 因百度业务调整，将百度天级收录更换为快速收录。
+== Upgrade Notice ==  
+Version 1.9.1 includes critical security enhancements—recommended for all users.  
 
-= 1.0.0 =
-* 首次正式发布
-* 经过两周的测试
+== Arbitrary section ==  
 
-== Upgrade Notice ==
-1.9.0 版本包含重要的安全增强，建议所有用户立即升级
+Plugin calls Baidu’s API endpoint: http://data.zz.baidu.com/  
 
-== Arbitrary section ==
+== Author ==  
 
-插件将调用百度资源平台的API接口：http://data.zz.baidu.com/
-
-== Author ==
-
-程序开发：WenM、Ting
-文档：小芸
-WebSite: [站长帮](https://www.zhanzhangb.cn/) | [站长帮资源站](https://www.zhanzhangb.com/)
+Developers: WenM, Ting  
+Documentation: XiaoYun  
+WebSite: [站长帮](https://www.zhanzhangb.cn/) | [站长帮资源](https://www.zhanzhangb.com/)  

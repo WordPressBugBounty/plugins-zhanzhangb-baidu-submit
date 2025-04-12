@@ -1,4 +1,5 @@
 <?php
+// includes/class-logger.php
 class Zhanzhangb_Baidu_Logger {
     const MAX_LOGS = 30;
     const LOG_FILENAME = 'baidu-submit-logfile.log';
@@ -19,6 +20,7 @@ class Zhanzhangb_Baidu_Logger {
 
         try {
             $logs = $this->get_logs();
+            
             if (count($logs) >= self::MAX_LOGS * 1.5) {
                 $logs = array_slice($logs, -self::MAX_LOGS);
             }
@@ -40,7 +42,7 @@ class Zhanzhangb_Baidu_Logger {
             return;
         }
 
-        echo '<pre style="max-height:500px;overflow:auto;white-space:pre-wrap;word-wrap:break-word;">';
+        echo '<pre style="max-height:550px; overflow:auto; white-space:pre-wrap; word-wrap:break-word; background-color:#2c3338; color:#E0E0E0;padding:20px;">';
         foreach (array_reverse($logs) as $log) {
             echo esc_html($log) . "\n";
         }

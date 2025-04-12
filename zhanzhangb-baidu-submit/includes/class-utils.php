@@ -1,4 +1,5 @@
 <?php
+// includes/class-utils.php
 class Zhanzhangb_Baidu_Utils {
     const MAX_RECORDS = 100;
     
@@ -11,6 +12,9 @@ class Zhanzhangb_Baidu_Utils {
         }
         if (!get_option('zhanzhangb_baidu_custom_post_types')) {
             update_option('zhanzhangb_baidu_custom_post_types', []);
+        }
+        if (!get_option('zhanzhangb_baidu_set_time')) {
+            update_option('zhanzhangb_baidu_set_time', []);
         }
     }
 
