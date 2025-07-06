@@ -1,5 +1,4 @@
 <?php
-// includes/class-utils.php
 class Zhanzhangb_Baidu_Utils {
     const MAX_RECORDS = 100;
     
@@ -28,39 +27,41 @@ class Zhanzhangb_Baidu_Utils {
             return;
         }
 
-        $submissions = get_option('zhanzhangb_baidu_submissions', []);
-        $hash = md5($url);
+        $date_key = $this->get_beijing_date_key();
         
-        if (!isset($submissions[$hash])) {
-            $submissions[$hash] = [
-                'url' => $url,
-                'timestamp' => time(),
-                'normal' => false,
-                'realtime' => false,
-                'count' => 0
-            ];
-        }
-
-        $submissions[$hash]['count']++;
         if ($normal_success) {
-            $submissions[$hash]['normal'] = true;
+            $this->set_daily_submission($url, 'normal', $date_key);
         }
         if ($realtime_success) {
-            $submissions[$hash]['realtime'] = true;
+            $this->set_daily_submission($url, 'realtime', $date_key);
         }
-
-        update_option('zhanzhangb_baidu_submissions', 
-            array_slice($submissions, -self::MAX_RECORDS, self::MAX_RECORDS, true)
-        );
     }
 
-    public function is_recently_submitted($url) {
-        $submissions = get_option('zhanzhangb_baidu_submissions', []);
+    private function set_daily_submission($url, $type, $date_key) {
         $hash = md5($url);
+        $transient_key = "zh_{$type}_submitted_{$hash}_{$date_key}";
         
-        return isset($submissions[$hash]) && 
-               (time() - $submissions[$hash]['timestamp']) < 86400 &&
-               $submissions[$hash]['count'] > 0;
+        $expiration = $this->get_beijing_seconds_until_midnight();
+        set_transient($transient_key, 1, $expiration);
+    }
+
+    public function has_submitted_today($url, $type) {
+        $hash = md5($url);
+        $date_key = $this->get_beijing_date_key();
+        $transient_key = "zh_{$type}_submitted_{$hash}_{$date_key}";
+        
+        return (bool) get_transient($transient_key);
+    }
+
+    public function get_beijing_date_key() {
+        return gmdate('Ymd', time() + 8 * HOUR_IN_SECONDS);
+    }
+
+    public function get_beijing_seconds_until_midnight() {
+        $current_time = time();
+        $beijing_time = $current_time + 8 * HOUR_IN_SECONDS;
+        $midnight = strtotime('tomorrow', $beijing_time) - 8 * HOUR_IN_SECONDS;
+        return $midnight - $current_time;
     }
 
     public function update_submit_count($success_count) {

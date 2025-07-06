@@ -1,5 +1,4 @@
 <?php
-// includes/class-submit-api.php
 class Zhanzhangb_Baidu_Submit_API {
     private $logger;
     private $utils;
@@ -42,19 +41,39 @@ class Zhanzhangb_Baidu_Submit_API {
             $success_normal = false;
             $success_realtime = false;
 
-            if ($this->normal_token && !$this->has_submitted_today($url, 'normal')) {
-                $success_normal = $this->submit_normal($url);
+            if ($this->normal_token) {
+                $should_submit_normal = true;
+                
+                if (!$this->allow_recent_submit) {
+                    $should_submit_normal = !$this->utils->has_submitted_today($url, 'normal');
+                }
+                
+                if ($should_submit_normal) {
+                    $success_normal = $this->submit_normal($url);
+                } else {
+                    $this->logger->log("普通收录：今天已提交过该URL，跳过提交", 'info', $url);
+                    $this->set_submission_lock($url);
+                }
             }
 
-            if ($this->realtime_token && !$this->has_submitted_today($url, 'realtime')) {
-                $success_realtime = $this->submit_realtime($url);
+            if ($this->realtime_token) {
+                $should_submit_realtime = true;
+                
+                if (!$this->allow_recent_submit) {
+                    $should_submit_realtime = !$this->utils->has_submitted_today($url, 'realtime');
+                }
+                
+                if ($should_submit_realtime) {
+                    $success_realtime = $this->submit_realtime($url);
+                } else {
+                    $this->logger->log("快速抓取：今天已提交过该URL，跳过提交", 'info', $url);
+                    $this->set_submission_lock($url);
+                }
             }
 
             if ($success_normal || $success_realtime) {
                 $this->utils->record_submission($post_id, $success_normal, $success_realtime);
                 $this->set_submission_lock($url);
-            } else {
-
             }
         }
     }
@@ -113,29 +132,14 @@ class Zhanzhangb_Baidu_Submit_API {
 
         return in_array($post_type, $selected_types);
     }
+    
     private function is_recent_submission($url) {
         $cache_key = 'zh_submit_' . md5($url);
-        return (bool) wp_cache_get($cache_key, 'zhanzhangb_baidu_submit'); 
+        return (bool) wp_cache_get($cache_key, 'zhanzhangb_baidu_submit');
     }
     
     private function set_submission_lock($url) {
         $cache_key = 'zh_submit_' . md5($url);
         wp_cache_set($cache_key, 1, 'zhanzhangb_baidu_submit', 30);
-    }
-
-    private function has_submitted_today($url, $type) {
-        $submissions = get_option('zhanzhangb_baidu_submissions', []);
-        $hash = md5($url);
-        
-        if (isset($submissions[$hash])) {
-            $submission = $submissions[$hash];
-            if ((time() - $submission['timestamp']) < 86400) {
-                if (($type === 'normal' && $submission['normal']) || ($type === 'realtime' && $submission['realtime'])) {
-                    return true;
-                }
-            }
-        }
-        
-        return false;
     }
 }

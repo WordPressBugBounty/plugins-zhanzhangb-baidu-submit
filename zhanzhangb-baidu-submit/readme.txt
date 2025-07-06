@@ -5,7 +5,7 @@ Tags: SEO, Baidu, 收录提交
 Requires at least: 5.5
 Requires PHP: 7.0
 Tested up to: 6.8.1
-Stable tag: 1.9.1
+Stable tag: 1.9.2
 License: GNU General Public License (GPL) version 3
 License URI: [GNU General Public License (GPL) version 3](https://www.gnu.org/licenses/gpl-3.0.html)
 
@@ -62,6 +62,9 @@ A: Stress tests show an average submission time of 0.03s. Triggers only during p
 2. `/assets/screenshot-2.png`  
 
 == Changelog ==  
+
+= 1.9.2 =
+* **Bug Fix**: "Allow repeated submission within 24 hours" control the invalid problem.
 
 = 1.9.1 =
 * **New Feature**: Added time-factor output options for Baidu/Toutiao Search to enhance search engine recognition of time-sensitive content, compliant with [Baidu's Time-Factor Guidelines](https://ziyuan.baidu.com/college/articleinfo?id=2210).

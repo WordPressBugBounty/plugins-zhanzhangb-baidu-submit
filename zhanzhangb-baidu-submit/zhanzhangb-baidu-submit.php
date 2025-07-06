@@ -4,7 +4,7 @@
  * Plugin URI: https://www.zhanzhangb.cn/zhanzhangb-baidu-submit
  * Text Domain: zhanzhangb-baidu-submit
  * Description: 发布/更新文章、页面或自定义文章时，实时推送URL至百度搜索资源平台，支持普通收录与快速抓取提交。
- * Version: 1.9.1
+ * Version: 1.9.2
  * Requires at least: 5.5
  * Requires PHP: 7.0
  * Author: 站长帮
