@@ -1,5 +1,4 @@
 <?php
-// includes/class-logger.php
 class Zhanzhangb_Baidu_Logger {
     const MAX_LOGS = 30;
     const LOG_FILENAME = 'baidu-submit-logfile.log';

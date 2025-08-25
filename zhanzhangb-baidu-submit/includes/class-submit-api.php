@@ -11,6 +11,7 @@ class Zhanzhangb_Baidu_Submit_API {
         $this->utils = $utils;
         $this->normal_token = $this->utils->get_option('zhanzhangb_baidu_token');
         $this->realtime_token = $this->utils->get_option('zhanzhangb_baidu_realtime_token');
+        
         $this->allow_recent_submit = $this->utils->get_option('zhanzhangb_baidu_check');
     }
 

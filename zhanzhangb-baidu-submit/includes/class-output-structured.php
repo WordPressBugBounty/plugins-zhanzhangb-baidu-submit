@@ -1,5 +1,4 @@
 <?php
-// includes/class-output-structured.php
 class Zhanzhangb_Baidu_Structured {
     public static function output($set_time_options) {
         if (!is_singular()) return;
@@ -13,7 +12,7 @@ class Zhanzhangb_Baidu_Structured {
         $pub_date = new DateTime(get_the_date('Y-m-d H:i:s', $post_id), $wp_timezone);
         $update_date = new DateTime(get_the_modified_date('Y-m-d H:i:s', $post_id), $wp_timezone);
 
-        if (in_array('baidu', $set_time_options)) {
+        if (in_array('baidu', $set_time_options) && !is_front_page() && !is_home()) {
             self::output_baidu($title, $permalink, $post_id, $pub_date, $update_date);
         }
 
@@ -23,7 +22,7 @@ class Zhanzhangb_Baidu_Structured {
     }
 
     private static function output_baidu($title, $permalink, $post_id, $pub_date, $update_date) {
-        $excerpt = mb_substr(strip_tags(get_the_excerpt($post_id)), 0, 120);
+        $excerpt = self::get_best_excerpt($post_id);
 
         $image_url = '';
         if (has_post_thumbnail($post_id)) {
@@ -52,5 +51,23 @@ class Zhanzhangb_Baidu_Structured {
         echo '<meta property="bytedance:updated_time" content="' 
              . esc_attr($update_date->format('Y-m-d\TH:i:sP')) 
              . '" />';
+    }
+
+    private static function get_best_excerpt($post_id) {
+        $excerpt = '';
+        
+        if (defined('WPSEO_VERSION')) {
+            $excerpt = get_post_meta($post_id, '_yoast_wpseo_metadesc', true);
+        }
+        
+        if (empty($excerpt) && class_exists('RankMath')) {
+            $excerpt = get_post_meta($post_id, 'rank_math_description', true);
+        }
+        
+        if (empty($excerpt)) {
+            $excerpt = get_the_excerpt($post_id);
+        }
+        
+        return mb_substr(strip_tags($excerpt), 0, 210);
     }
 }

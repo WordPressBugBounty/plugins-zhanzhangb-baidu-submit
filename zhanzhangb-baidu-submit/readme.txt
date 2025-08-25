@@ -5,7 +5,7 @@ Tags: SEO, Baidu, 收录提交
 Requires at least: 5.5
 Requires PHP: 7.0
 Tested up to: 6.8.1
-Stable tag: 1.9.2
+Stable tag: 1.9.3
 License: GNU General Public License (GPL) version 3
 License URI: [GNU General Public License (GPL) version 3](https://www.gnu.org/licenses/gpl-3.0.html)
 
@@ -62,6 +62,10 @@ A: Stress tests show an average submission time of 0.03s. Triggers only during p
 2. `/assets/screenshot-2.png`  
 
 == Changelog ==  
+
+= 1.9.3 =
+* **Feature Enhancement**: For structured data output to Baidu, prioritize the meta description from SEO plugins (supporting both Yoast SEO and Rank Math). If both are empty, fall back to the default WordPress post excerpt.
+* **Feature Enhancement**: Adjust the rule for Baidu submission to prevent duplicate submissions within the same calendar day. The submission counter resets daily at 00:00.
 
 = 1.9.2 =
 * **Bug Fix**: "Allow repeated submission within 24 hours" control the invalid problem.
@@ -120,4 +124,4 @@ Plugin calls Baidu’s API endpoint: http://data.zz.baidu.com/
 
 Developers: WenM, Ting  
 Documentation: XiaoYun  
-WebSite: [站长帮](https://www.zhanzhangb.cn/) | [站长帮资源](https://www.zhanzhangb.com/)  
+WebSite: [站长帮](https://www.zhanzhangb.cn/) | [站长帮资源](https://zy.zhanzhangb.cn/)  

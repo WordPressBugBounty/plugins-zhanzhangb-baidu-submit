@@ -1,5 +1,4 @@
 <?php
-// admin/class-settings.php
 class Zhanzhangb_Baidu_Settings {
     private $logger;
     private $utils;
@@ -52,7 +51,7 @@ class Zhanzhangb_Baidu_Settings {
             'zhanzhangb_baidu_set',
             ['label_for' => 'zhanzhangb_baidu_realtime_token']
         );
-        
+		
         add_settings_field(
             'zhanzhangb_baidu_custom_post_types',
             __('选择需提交的自定义文章类型：', 'zhanzhangb-baidu-submit'),
@@ -63,7 +62,7 @@ class Zhanzhangb_Baidu_Settings {
 
         add_settings_field(
             'zhanzhangb_baidu_check',
-            __('允许24小时内重复提交：', 'zhanzhangb-baidu-submit'),
+            __('允许当天内重复提交：', 'zhanzhangb-baidu-submit'),
             [$this, 'render_checkbox_field'],
             'zhanzhangb_baidu_settings',
             'zhanzhangb_baidu_set'
@@ -225,7 +224,7 @@ public function render_settings_page() {
                     <?php endif; ?>
                 </p>
                 <p>
-                    <span style="color:#009933">☑</span>
+                    <span style="color:#009933">&#9745;</span>
                     <?php esc_html_e('累计提交成功：', 'zhanzhangb-baidu-submit'); ?>
                     <?php echo absint(get_option('zhanzhangb_baidu_submit_number', 0)); ?>
                     <?php esc_html_e('条', 'zhanzhangb-baidu-submit'); ?>
@@ -240,39 +239,39 @@ public function render_settings_page() {
     <?php
 }
 
-    public function render_settings_title() {
-        $links = [
-            [
-                'text' => esc_html__('插件作者：', 'zhanzhangb-baidu-submit'),
-                'url'  => 'https://www.zhanzhangb.cn/zhanzhangb-baidu-submit/',
-                'label' => esc_html__('站长帮', 'zhanzhangb-baidu-submit'),
-            ],
-            [
-                'text' => esc_html__('插件还不错？请给个', 'zhanzhangb-baidu-submit'),
-                'url'  => 'https://wordpress.org/support/plugin/zhanzhangb-baidu-submit/reviews/#new-post',
-                'label' => esc_html__('五星好评！', 'zhanzhangb-baidu-submit'),
-            ],
-            [
-                'text' => esc_html__('★ 强烈推荐：', 'zhanzhangb-baidu-submit'),
-                'url'  => 'https://www.zhanzhangb.com/plugins',
-                'label' => esc_html__('精品插件下载', 'zhanzhangb-baidu-submit'),
-            ],
-            [
-                'url'  => 'https://www.zhanzhangb.com/themes',
-                'label' => esc_html__('精品主题下载', 'zhanzhangb-baidu-submit'),
-            ],
-            [
-                'url'  => 'https://www.zhanzhangb.cn/tutorials',
-                'label' => esc_html__('WordPress 教程', 'zhanzhangb-baidu-submit'),
-            ]
-        ];
+	public function render_settings_title() {
+		$links = [
+			[
+				'text' => esc_html__('插件作者：', 'zhanzhangb-baidu-submit'),
+				'url'  => 'https://www.zhanzhangb.cn/zhanzhangb-baidu-submit/',
+				'label' => esc_html__('站长帮', 'zhanzhangb-baidu-submit'),
+			],
+			[
+				'text' => esc_html__('插件还不错？请给个', 'zhanzhangb-baidu-submit'),
+				'url'  => 'https://wordpress.org/support/plugin/zhanzhangb-baidu-submit/reviews/#new-post',
+				'label' => esc_html__('五星好评！', 'zhanzhangb-baidu-submit'),
+			],
+			[
+				'text' => esc_html__('★ 强烈推荐：', 'zhanzhangb-baidu-submit'),
+				'url'  => 'https://zy.zhanzhangb.cn/plugins/',
+				'label' => esc_html__('精品插件下载', 'zhanzhangb-baidu-submit'),
+			],
+			[
+				'url'  => 'https://zy.zhanzhangb.cn/themes/',
+				'label' => esc_html__('精品主题下载', 'zhanzhangb-baidu-submit'),
+			],
+			[
+				'url'  => 'https://www.zhanzhangb.cn/tutorials/',
+				'label' => esc_html__('WordPress 教程', 'zhanzhangb-baidu-submit'),
+			]
+		];
 
-        $html = '<p>' . implode(' | ', array_map(function($link) {
-            return (isset($link['text']) ? $link['text'] : '') . 
-                   '<a href="' . esc_url($link['url']) . '" target="_blank">' . esc_html($link['label']) . '</a>';
-        }, $links)) . '</p>';
-        echo wp_kses_post($html);
-    }
+		$html = '<p>' . implode(' | ', array_map(function($link) {
+			return (isset($link['text']) ? $link['text'] : '') . 
+				   '<a href="' . esc_url($link['url']) . '" target="_blank">' . esc_html($link['label']) . '</a>';
+		}, $links)) . '</p>';
+		echo wp_kses_post($html);
+	}
 
     public function render_token_field() {
         $token = get_option('zhanzhangb_baidu_token');
@@ -287,49 +286,51 @@ public function render_settings_page() {
                name="zhanzhangb_baidu_realtime_token" value="' . esc_attr($token) . '">';
     }
 
-    public function render_custom_post_types_field() {
-        $selected_types = get_option('zhanzhangb_baidu_custom_post_types', []);
-        if (!is_array($selected_types)) {
-            $selected_types = [];
-        }
-        
-        $post_types = get_post_types(['public' => true, '_builtin' => false]);
-        
-        if (empty($post_types)) {
-            echo '<p>' . esc_html__('无可用的自定义文章类型，默认提交 WordPress 标准的文章(post)和页面(page)。', 'zhanzhangb-baidu-submit') . '</p>';
-            return;
-        }
+	public function render_custom_post_types_field() {
+		$selected_types = get_option('zhanzhangb_baidu_custom_post_types', []);
+		if (!is_array($selected_types)) {
+			$selected_types = [];
+		}
+		
+		$post_types = get_post_types(['public' => true, '_builtin' => false]);
+		
+		if (empty($post_types)) {
+			echo '<p>' . esc_html__('无可用的自定义文章类型，默认提交 WordPress 标准的文章(post)和页面(page)。', 'zhanzhangb-baidu-submit') . '</p>';
+			return;
+		}
         $tooltip = esc_html__('默认情况下只有 WordPress 标准的文章(post)和页面(page)会被提交。', 'zhanzhangb-baidu-submit');
 
-        ob_start();
-        ?>
-        <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
-            <span class="dashicons dashicons-editor-help" style="cursor: pointer;" title="<?php echo $tooltip ?>"></span>
-            <?php foreach ($post_types as $post_type) : 
-                $checked = in_array($post_type, $selected_types) ? 'checked' : '';
-                $label = esc_html(get_post_type_object($post_type)->labels->name);
-            ?>
-                <label style="flex: 0 0 auto; display: flex; align-items: center; gap: 5px; line-height: 1.3;">
-                    <input type="checkbox" name="zhanzhangb_baidu_custom_post_types[]" 
-                           value="<?php echo esc_attr($post_type); ?>" 
-                           <?php echo $checked; ?> 
-                           style="margin: 0;">
-                    <?php echo $label; ?>
-                </label>
-            <?php endforeach; ?>
-        </div>
-        <?php
-        echo ob_get_clean();
-    }
-    
+		ob_start();
+		?>
+		<div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+		    <span class="dashicons dashicons-editor-help" style="cursor: pointer;" title="<?php echo $tooltip ?>"></span>
+			<?php foreach ($post_types as $post_type) : 
+				$checked = in_array($post_type, $selected_types) ? 'checked' : '';
+				$label = esc_html(get_post_type_object($post_type)->labels->name);
+			?>
+				<label style="flex: 0 0 auto; display: flex; align-items: center; gap: 5px; line-height: 1.3;">
+					<input type="checkbox" name="zhanzhangb_baidu_custom_post_types[]" 
+						   value="<?php echo esc_attr($post_type); ?>" 
+						   <?php echo $checked; ?> 
+						   style="margin: 0;">
+					<?php echo $label; ?>
+				</label>
+			<?php endforeach; ?>
+		</div>
+		<?php
+		echo ob_get_clean();
+	}
+	
     public function render_checkbox_field() {
         $checked = get_option('zhanzhangb_baidu_check') ? 'checked' : '';
-        $tooltip = esc_html__('默认同一个URL在24小时内仅能成功提交一次（失败可重试），实践证明频繁提交不会加快收录。', 'zhanzhangb-baidu-submit');
+        $tooltip = esc_html__('默认同一个URL在 1 天内仅能成功提交一次（失败可重试），实践证明频繁提交不会加快收录。', 'zhanzhangb-baidu-submit');
         echo '<span class="dashicons dashicons-editor-help" style="cursor: pointer;" title="' . $tooltip . '"></span>';
         echo '&nbsp;&nbsp;<input type="checkbox" name="zhanzhangb_baidu_check" value="1" ' . $checked . '>';
         echo '<span class="description">不建议勾选。</span>';
     }
-    
+	
+
+	
     public function render_time_factor_field() {
         $set_time = get_option('zhanzhangb_baidu_set_time', []);
         if (!is_array($set_time)) {

@@ -5,7 +5,7 @@ Tags: SEO, Baidu, 收录提交
 Requires at least: 5.5
 Requires PHP: 7.0
 Tested up to: 6.8
-Stable tag: 1.9.1
+Stable tag: 1.9.3
 License: GNU General Public License (GPL) version 3
 License URI: [GNU General Public License (GPL) version 3](https://www.gnu.org/licenses/gpl-3.0.html)
 
@@ -62,6 +62,10 @@ A: 经压力测试，单次提交平均耗时 0.03s。仅发布 / 修改内容�
 2. `/assets/screenshot-2.png`
 
 == Changelog ==
+
+= 1.9.3 =
+* 「功能优化」为百度输出的结构化数据优先使用 SEO 插件的摘要，支持 Yoast SEO 与 Rank Math 的 meta description，如都为空则使用 WordPress 默认的文章摘要。
+* 「功能优化」根据百度提交的规则，24小时内不重复提交功能调整成当天不重复提交，每天 0 点重置。
 
 = 1.9.2 =
 * 「Bug 修复」“允许24小时内重复提交”控制失效的问题。
@@ -120,4 +124,4 @@ A: 经压力测试，单次提交平均耗时 0.03s。仅发布 / 修改内容�
 
 程序开发：WenM、Ting
 文档：小芸
-WebSite: [站长帮](https://www.zhanzhangb.cn/) | [站长帮资源站](https://www.zhanzhangb.com/)
+WebSite: [站长帮](https://www.zhanzhangb.cn/) | [站长帮资源站](https://zy.zhanzhangb.cn/)
