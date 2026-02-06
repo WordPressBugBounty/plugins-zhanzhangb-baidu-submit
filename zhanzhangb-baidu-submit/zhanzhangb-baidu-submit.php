@@ -1,10 +1,10 @@
 <?php
 /**
- * Plugin Name: 自动提交百度收录插件
+ * Plugin Name: Zhanzhangb Indexing Submission for Baidu
  * Plugin URI: https://www.zhanzhangb.cn/zhanzhangb-baidu-submit
  * Text Domain: zhanzhangb-baidu-submit
- * Description: 发布/更新文章、页面或自定义文章时，实时推送URL至百度搜索资源平台，支持普通收录与快速抓取提交。
- * Version: 1.9.3
+ * Description: When publishing or updating posts, pages, or custom post types, automatically push the URL in real time to Baidu Search Resource Platform, supporting both standard indexing and rapid crawling submissions.
+ * Version: 1.9.5
  * Requires at least: 5.5
  * Requires PHP: 7.0
  * Author: 站长帮
@@ -12,6 +12,8 @@
  * License: GNU General Public License Version 2 (GPL v2)
  * License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * Copyright (c) 2020-2025, 站长帮（zhanzhangb.cn）
+/*
+ * BOOTSTRAP FILE
  */
 defined('ABSPATH') || exit;
 
@@ -61,7 +63,7 @@ class Zhanzhangb_Baidu_Submit {
     }
 
     public function add_plugin_actions($links) {
-        $settings_link = '<a href="' . admin_url('options-general.php?page=zhanzhangb_baidu_submit') . '">设置</a>';
+        $settings_link = '<a href="' . admin_url('options-general.php?page=zhanzhangb_baidu_submit') . '">' . __('Settings', 'zhanzhangb-baidu-submit') . '</a>';
         array_unshift($links, $settings_link);
         return $links;
     }

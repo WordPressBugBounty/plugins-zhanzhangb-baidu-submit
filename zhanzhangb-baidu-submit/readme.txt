@@ -1,11 +1,11 @@
-=== 自动提交百度收录插件 ===
+=== Zhanzhangb Indexing Submission for Baidu ===
 Contributors: ywtywt
 Donate link: [站长帮](https://www.zhanzhangb.cn/)
-Tags: SEO, Baidu, 收录提交
+Tags: SEO, Baidu
 Requires at least: 5.5
 Requires PHP: 7.0
-Tested up to: 6.8.1
-Stable tag: 1.9.3
+Tested up to: 6.8.3
+Stable tag: 1.9.5
 License: GNU General Public License (GPL) version 3
 License URI: [GNU General Public License (GPL) version 3](https://www.gnu.org/licenses/gpl-3.0.html)
 
@@ -62,6 +62,13 @@ A: Stress tests show an average submission time of 0.03s. Triggers only during p
 2. `/assets/screenshot-2.png`  
 
 == Changelog ==  
+
+= 1.9.5 =
+* **Bug Fix**: Fix text domain issues.
+
+= 1.9.4 =
+* **Compatibility**: The plugin has been renamed to use an English name.  
+* **Bug Fix**: Fixed internationalization issues in the plugin to ensure all fields are translatable.
 
 = 1.9.3 =
 * **Feature Enhancement**: For structured data output to Baidu, prioritize the meta description from SEO plugins (supporting both Yoast SEO and Rank Math). If both are empty, fall back to the default WordPress post excerpt.

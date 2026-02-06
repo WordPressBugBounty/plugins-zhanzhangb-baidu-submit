@@ -12,7 +12,7 @@ class Zhanzhangb_Baidu_Logger {
         $log_entry = sprintf(
             "[%s] [%s]%s %s",
             current_time('mysql'), 
-            ($type === 'success') ? "成功" : (($type === 'error') ? "失败" : "未知"),
+            ($type === 'success') ? __("success", 'zhanzhangb-baidu-submit') : (($type === 'error') ? __("error", 'zhanzhangb-baidu-submit') : __("unknown", 'zhanzhangb-baidu-submit')),
             $url ? " [URL: {$url}]" : "",
             $message
         );
@@ -27,17 +27,19 @@ class Zhanzhangb_Baidu_Logger {
             array_push($logs, $log_entry);
             $this->save_logs(array_slice($logs, -self::MAX_LOGS));
         } catch (Exception $e) {
-            error_log('百度提交日志记录失败: ' . $e->getMessage());
+            error_log(
+                __('Baidu submission log recording failed:', 'zhanzhangb-baidu-submit') . ' ' . $e->getMessage()
+            );
         }
     }
 
     public function display_logs() {
         echo '<div class="zhanzhangb-log-container">';
-        echo '<h3>' . esc_html__('提交日志（最近30条）:', 'zhanzhangb-baidu-submit') . '</h3>';
+        echo '<h3>' . esc_html__('Submission log (latest 30):', 'zhanzhangb-baidu-submit') . '</h3>';
         
         $logs = $this->get_logs();
         if (empty($logs)) {
-            echo '<p>' . esc_html__('暂无提交日志', 'zhanzhangb-baidu-submit') . '</p>';
+            echo '<p>' . esc_html__('No submission log yet', 'zhanzhangb-baidu-submit') . '</p>';
             return;
         }
 
@@ -83,7 +85,9 @@ class Zhanzhangb_Baidu_Logger {
                 LOCK_EX
             );
         } catch (Exception $e) {
-            error_log('日志文件写入失败: ' . $e->getMessage());
+            error_log(
+                __('Log file write failed:', 'zhanzhangb-baidu-submit') . ' ' . $e->getMessage()
+            );
         }
     }
 }

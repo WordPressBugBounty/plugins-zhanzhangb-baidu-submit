@@ -10,15 +10,15 @@ class Zhanzhangb_Baidu_Settings {
         add_action('admin_init', [$this, 'init_settings']);
     }
 
-    public function add_menu() {
-        add_options_page(
-            '站长帮 - 自动提交百度收录设置',
-            '站长帮 - 自动提交百度收录设置',
-            'manage_options',
-            'zhanzhangb_baidu_submit',
-            [$this, 'render_settings_page']
-        );
-    }
+	public function add_menu() {
+		add_options_page(
+			__('Zhanzhangb Indexing Submission for Baidu Settings', 'zhanzhangb-baidu-submit'),
+			__('Zhanzhangb Indexing Submission for Baidu', 'zhanzhangb-baidu-submit'),
+			'manage_options',
+			'zhanzhangb_baidu_submit',
+			[$this, 'render_settings_page']
+		);
+	}
 
     public function init_settings() {
         register_setting('zhanzhangb_baidu_settings', 'zhanzhangb_baidu_token', 'sanitize_text_field');
@@ -29,14 +29,14 @@ class Zhanzhangb_Baidu_Settings {
 
         add_settings_section(
             'zhanzhangb_baidu_set',
-            __('百度推送设置', 'zhanzhangb-baidu-submit'),
+            __('Baidu Submission Settings', 'zhanzhangb-baidu-submit'),
             [$this, 'render_settings_title'],
             'zhanzhangb_baidu_settings'
         );
 
         add_settings_field(
             'zhanzhangb_baidu_token',
-            __('普通收录提交密钥（token）：', 'zhanzhangb-baidu-submit'),
+            __('Regular Submission Token (token):', 'zhanzhangb-baidu-submit'),
             [$this, 'render_token_field'],
             'zhanzhangb_baidu_settings',
             'zhanzhangb_baidu_set',
@@ -45,7 +45,7 @@ class Zhanzhangb_Baidu_Settings {
 
         add_settings_field(
             'zhanzhangb_baidu_realtime_token',
-            __('快速抓取提交密钥（token）：', 'zhanzhangb-baidu-submit'),
+            __('Fast Crawl Submission Token (token):', 'zhanzhangb-baidu-submit'),
             [$this, 'render_realtime_token_field'],
             'zhanzhangb_baidu_settings',
             'zhanzhangb_baidu_set',
@@ -54,7 +54,7 @@ class Zhanzhangb_Baidu_Settings {
 		
         add_settings_field(
             'zhanzhangb_baidu_custom_post_types',
-            __('选择需提交的自定义文章类型：', 'zhanzhangb-baidu-submit'),
+            __('Select Custom Post Types to Submit:', 'zhanzhangb-baidu-submit'),
             [$this, 'render_custom_post_types_field'],
             'zhanzhangb_baidu_settings',
             'zhanzhangb_baidu_set'
@@ -62,7 +62,7 @@ class Zhanzhangb_Baidu_Settings {
 
         add_settings_field(
             'zhanzhangb_baidu_check',
-            __('允许当天内重复提交：', 'zhanzhangb-baidu-submit'),
+            __('Allow duplicate submissions within the same day:', 'zhanzhangb-baidu-submit'),
             [$this, 'render_checkbox_field'],
             'zhanzhangb_baidu_settings',
             'zhanzhangb_baidu_set'
@@ -70,7 +70,7 @@ class Zhanzhangb_Baidu_Settings {
 
         add_settings_field(
             'zhanzhangb_baidu_set_time',
-            __('输出时间因子结构化数据：', 'zhanzhangb-baidu-submit'),
+            __('Output Time Factor Structured Data:', 'zhanzhangb-baidu-submit'),
             [$this, 'render_time_factor_field'],
             'zhanzhangb_baidu_settings',
             'zhanzhangb_baidu_set'
@@ -183,7 +183,7 @@ public function render_settings_page() {
     </style>
     <div class="zhanzhangb_baidu">
         <form method="post" action="options.php">
-            <h1><?php esc_html_e('自动提交百度收录 - 设置', 'zhanzhangb-baidu-submit'); ?></h1>
+            <h1><?php esc_html_e('Auto Submit to Baidu - Settings', 'zhanzhangb-baidu-submit'); ?></h1>
             <hr>
             <?php settings_fields('zhanzhangb_baidu_settings'); ?>
             <?php do_settings_sections('zhanzhangb_baidu_settings'); ?>
@@ -192,18 +192,18 @@ public function render_settings_page() {
             <hr>
             
             <div class="status-section">
-                <h3><?php esc_html_e('提交状态', 'zhanzhangb-baidu-submit'); ?></h3>
+                <h3><?php esc_html_e('Submission Status', 'zhanzhangb-baidu-submit'); ?></h3>
                 
                 <p>
                     <?php if(get_option('zhanzhangb_baidu_token')) : ?>
                         <span style="color:#009933">✓</span>
-                        <?php esc_html_e('普通收录提交功能：已开启', 'zhanzhangb-baidu-submit'); ?>
+                        <?php esc_html_e('Regular submission function: Enabled', 'zhanzhangb-baidu-submit'); ?>
                     <?php else : ?>
                         <span style="color:#FF0000">✗</span>
                         <?php
                             echo sprintf(
-                                esc_html__('普通收录提交功能：未开启，请正确设置token。%s', 'zhanzhangb-baidu-submit'),
-                                '<a href="https://ziyuan.baidu.com/linksubmit/index" target="_blank" rel="noopener noreferrer">' . esc_html__('获取普通收录 token', 'zhanzhangb-baidu-submit') . '</a>'
+                                esc_html__('Regular submission function: Disabled, please set token correctly. %s', 'zhanzhangb-baidu-submit'),
+                                '<a href="https://ziyuan.baidu.com/linksubmit/index" target="_blank" rel="noopener noreferrer">' . esc_html__('Get regular submission token', 'zhanzhangb-baidu-submit') . '</a>'
                             );
                         ?>
                     <?php endif; ?>
@@ -212,22 +212,22 @@ public function render_settings_page() {
                 <p>
                     <?php if(get_option('zhanzhangb_baidu_realtime_token')) : ?>
                         <span style="color:#009933">✓</span>
-                        <?php esc_html_e('快速抓取提交功能：已开启', 'zhanzhangb-baidu-submit'); ?>
+                        <?php esc_html_e('Fast crawl submission function: Enabled', 'zhanzhangb-baidu-submit'); ?>
                     <?php else : ?>
                         <span style="color:#FF0000">✗</span>
                         <?php
                             echo sprintf(
-                                esc_html__('快速抓取提交功能：未开启，请正确设置token，如空则不启用。%s', 'zhanzhangb-baidu-submit'),
-                                '<a href="https://ziyuan.baidu.com/fastcrawl/index" target="_blank" rel="noopener noreferrer">' . esc_html__('获取快速抓取 token', 'zhanzhangb-baidu-submit') . '</a>'
+                                esc_html__('Fast crawl submission function: Disabled, please set token correctly, leave empty to disable. %s', 'zhanzhangb-baidu-submit'),
+                                '<a href="https://ziyuan.baidu.com/fastcrawl/index" target="_blank" rel="noopener noreferrer">' . esc_html__('Get fast crawl token', 'zhanzhangb-baidu-submit') . '</a>'
                             );
                         ?>
                     <?php endif; ?>
                 </p>
                 <p>
                     <span style="color:#009933">&#9745;</span>
-                    <?php esc_html_e('累计提交成功：', 'zhanzhangb-baidu-submit'); ?>
+                    <?php esc_html_e('Total successful submissions:', 'zhanzhangb-baidu-submit'); ?>
                     <?php echo absint(get_option('zhanzhangb_baidu_submit_number', 0)); ?>
-                    <?php esc_html_e('条', 'zhanzhangb-baidu-submit'); ?>
+                    <?php esc_html_e('items', 'zhanzhangb-baidu-submit'); ?>
                 </p>
             </div>
 
@@ -242,27 +242,27 @@ public function render_settings_page() {
 	public function render_settings_title() {
 		$links = [
 			[
-				'text' => esc_html__('插件作者：', 'zhanzhangb-baidu-submit'),
+				'text' => esc_html__('Plugin author:', 'zhanzhangb-baidu-submit'),
 				'url'  => 'https://www.zhanzhangb.cn/zhanzhangb-baidu-submit/',
-				'label' => esc_html__('站长帮', 'zhanzhangb-baidu-submit'),
+				'label' => esc_html__('Zhanzhangb', 'zhanzhangb-baidu-submit'),
 			],
 			[
-				'text' => esc_html__('插件还不错？请给个', 'zhanzhangb-baidu-submit'),
+				'text' => esc_html__('Like this plugin? Please give it a', 'zhanzhangb-baidu-submit'),
 				'url'  => 'https://wordpress.org/support/plugin/zhanzhangb-baidu-submit/reviews/#new-post',
-				'label' => esc_html__('五星好评！', 'zhanzhangb-baidu-submit'),
+				'label' => esc_html__('5-star rating!', 'zhanzhangb-baidu-submit'),
 			],
 			[
-				'text' => esc_html__('★ 强烈推荐：', 'zhanzhangb-baidu-submit'),
+				'text' => esc_html__('★ Highly recommended:', 'zhanzhangb-baidu-submit'),
 				'url'  => 'https://zy.zhanzhangb.cn/plugins/',
-				'label' => esc_html__('精品插件下载', 'zhanzhangb-baidu-submit'),
+				'label' => esc_html__('Premium Plugins Download', 'zhanzhangb-baidu-submit'),
 			],
 			[
 				'url'  => 'https://zy.zhanzhangb.cn/themes/',
-				'label' => esc_html__('精品主题下载', 'zhanzhangb-baidu-submit'),
+				'label' => esc_html__('Premium Themes Download', 'zhanzhangb-baidu-submit'),
 			],
 			[
 				'url'  => 'https://www.zhanzhangb.cn/tutorials/',
-				'label' => esc_html__('WordPress 教程', 'zhanzhangb-baidu-submit'),
+				'label' => esc_html__('WordPress Tutorials', 'zhanzhangb-baidu-submit'),
 			]
 		];
 
@@ -277,7 +277,7 @@ public function render_settings_page() {
         $token = get_option('zhanzhangb_baidu_token');
         echo '<input id="zhanzhangb_baidu_token" maxlength="16" size="16" type="text" required pattern="[A-Za-z0-9]{16}" 
                name="zhanzhangb_baidu_token" value="' . esc_attr($token) . '">';
-        if (empty($token)) echo '<span class="description">*必填</span>';
+        if (empty($token)) echo '<span class="description">*Required</span>';
     }
 
     public function render_realtime_token_field() {
@@ -295,15 +295,14 @@ public function render_settings_page() {
 		$post_types = get_post_types(['public' => true, '_builtin' => false]);
 		
 		if (empty($post_types)) {
-			echo '<p>' . esc_html__('无可用的自定义文章类型，默认提交 WordPress 标准的文章(post)和页面(page)。', 'zhanzhangb-baidu-submit') . '</p>';
+			echo '<p>' . esc_html__('No custom post types available, default submission includes WordPress standard posts and pages.', 'zhanzhangb-baidu-submit') . '</p>';
 			return;
 		}
-        $tooltip = esc_html__('默认情况下只有 WordPress 标准的文章(post)和页面(page)会被提交。', 'zhanzhangb-baidu-submit');
 
 		ob_start();
 		?>
 		<div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
-		    <span class="dashicons dashicons-editor-help" style="cursor: pointer;" title="<?php echo $tooltip ?>"></span>
+		    <span class="dashicons dashicons-editor-help" style="cursor: pointer;" title="<?php echo esc_attr(esc_html__('By default, only WordPress standard posts and pages will be submitted.', 'zhanzhangb-baidu-submit')); ?>"></span>
 			<?php foreach ($post_types as $post_type) : 
 				$checked = in_array($post_type, $selected_types) ? 'checked' : '';
 				$label = esc_html(get_post_type_object($post_type)->labels->name);
@@ -323,13 +322,11 @@ public function render_settings_page() {
 	
     public function render_checkbox_field() {
         $checked = get_option('zhanzhangb_baidu_check') ? 'checked' : '';
-        $tooltip = esc_html__('默认同一个URL在 1 天内仅能成功提交一次（失败可重试），实践证明频繁提交不会加快收录。', 'zhanzhangb-baidu-submit');
-        echo '<span class="dashicons dashicons-editor-help" style="cursor: pointer;" title="' . $tooltip . '"></span>';
+        $tooltip = esc_html__('By default, the same URL can only be successfully submitted once within 1 day (failed submissions can be retried). Practice shows that frequent submissions do not speed up indexing.', 'zhanzhangb-baidu-submit');
+        echo '<span class="dashicons dashicons-editor-help" style="cursor: pointer;" title="' . esc_attr($tooltip) . '"></span>';
         echo '&nbsp;&nbsp;<input type="checkbox" name="zhanzhangb_baidu_check" value="1" ' . $checked . '>';
-        echo '<span class="description">不建议勾选。</span>';
+        echo '<span class="description">' . esc_html__('Not recommended to check.', 'zhanzhangb-baidu-submit') . '</span>';
     }
-	
-
 	
     public function render_time_factor_field() {
         $set_time = get_option('zhanzhangb_baidu_set_time', []);
@@ -337,24 +334,24 @@ public function render_settings_page() {
             $set_time = [];
         }
     
-        $tooltip = esc_html__('非登录状态下，将在页面头部 <head> 输出时间因子数据（百度落地页结构化数据或头条搜索支持的 meta 标签），以符合搜索落地页时间因子规范。', 'zhanzhangb-baidu-submit');
+        $tooltip = esc_html__('For non-logged-in users, time factor data (Baidu landing page structured data or Toutiao search supported meta tags) will be output in the page header <head> to comply with search landing page time factor specifications.', 'zhanzhangb-baidu-submit');
 
         echo '<div style="display: flex; align-items: center; gap: 10px;">';
-        echo '<span class="dashicons dashicons-editor-help" style="cursor: pointer;" title="' . $tooltip . '"></span>';
+        echo '<span class="dashicons dashicons-editor-help" style="cursor: pointer;" title="' . esc_attr($tooltip) . '"></span>';
         echo '<label>';
         echo '<input type="checkbox" name="zhanzhangb_baidu_set_time[]" value="baidu" ' . checked(in_array('baidu', $set_time), true, false) . '>';
         echo '&nbsp;' . sprintf(
-            esc_html__('百度时间因子 %s', 'zhanzhangb-baidu-submit'),
+            esc_html__('Baidu Time Factor %s', 'zhanzhangb-baidu-submit'),
             sprintf(
                 '<a href="%s" target="_blank">（%s）</a>',
                 'https://ziyuan.baidu.com/college/articleinfo?id=2210',
-                esc_html__('结构化数据', 'zhanzhangb-baidu-submit')
+                esc_html__('Structured Data', 'zhanzhangb-baidu-submit')
             )
         );
         echo '</label>';
         echo '<label>';
         echo '<input type="checkbox" name="zhanzhangb_baidu_set_time[]" value="toutiao" ' . checked(in_array('toutiao', $set_time), true, false) . '>';
-        echo '&nbsp;' . esc_html__('头条搜索时间因子（meta）', 'zhanzhangb-baidu-submit');
+        echo '&nbsp;' . esc_html__('Toutiao Search Time Factor (meta)', 'zhanzhangb-baidu-submit');
         echo '</label>';
         echo '</div>';
     }
