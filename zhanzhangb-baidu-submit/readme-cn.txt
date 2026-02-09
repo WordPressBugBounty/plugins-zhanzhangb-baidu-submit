@@ -4,8 +4,8 @@ Donate link: [站长帮](https://www.zhanzhangb.cn/)
 Tags: SEO, Baidu, 收录提交
 Requires at least: 5.5
 Requires PHP: 7.0
-Tested up to: 6.8
-Stable tag: 1.9.3
+Tested up to: 6.9.1
+Stable tag: 1.9.6
 License: GNU General Public License (GPL) version 3
 License URI: [GNU General Public License (GPL) version 3](https://www.gnu.org/licenses/gpl-3.0.html)
 
@@ -62,6 +62,16 @@ A: 经压力测试，单次提交平均耗时 0.03s。仅发布 / 修改内容�
 2. `/assets/screenshot-2.png`
 
 == Changelog ==
+= 1.9.6 =
+* **错误修复**: 某些情况下会触发多余的提交。
+* **优化**: 优化代码质量。
+
+= 1.9.5 =
+* **错误修复**: 修复文本域问题。
+
+= 1.9.4 =
+* **兼容性**: 插件已重命名为英文名称。
+* **错误修复**: 修复插件的国际化问题，确保所有字段都可翻译。
 
 = 1.9.3 =
 * 「功能优化」为百度输出的结构化数据优先使用 SEO 插件的摘要，支持 Yoast SEO 与 Rank Math 的 meta description，如都为空则使用 WordPress 默认的文章摘要。

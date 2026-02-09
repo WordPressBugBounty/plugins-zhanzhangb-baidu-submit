@@ -4,14 +4,14 @@
  * Plugin URI: https://www.zhanzhangb.cn/zhanzhangb-baidu-submit
  * Text Domain: zhanzhangb-baidu-submit
  * Description: When publishing or updating posts, pages, or custom post types, automatically push the URL in real time to Baidu Search Resource Platform, supporting both standard indexing and rapid crawling submissions.
- * Version: 1.9.5
+ * Version: 1.9.6
  * Requires at least: 5.5
  * Requires PHP: 7.0
  * Author: 站长帮
  * Author URI: https://www.zhanzhangb.cn
  * License: GNU General Public License Version 2 (GPL v2)
  * License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
- * Copyright (c) 2020-2025, 站长帮（zhanzhangb.cn）
+ * Copyright (c) 2020-2026, 站长帮（zhanzhangb.cn）
 /*
  * BOOTSTRAP FILE
  */

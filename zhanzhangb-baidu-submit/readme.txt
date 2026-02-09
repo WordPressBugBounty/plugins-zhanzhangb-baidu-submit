@@ -4,8 +4,8 @@ Donate link: [站长帮](https://www.zhanzhangb.cn/)
 Tags: SEO, Baidu
 Requires at least: 5.5
 Requires PHP: 7.0
-Tested up to: 6.8.3
-Stable tag: 1.9.5
+Tested up to: 6.9.1
+Stable tag: 1.9.6
 License: GNU General Public License (GPL) version 3
 License URI: [GNU General Public License (GPL) version 3](https://www.gnu.org/licenses/gpl-3.0.html)
 
@@ -62,6 +62,9 @@ A: Stress tests show an average submission time of 0.03s. Triggers only during p
 2. `/assets/screenshot-2.png`  
 
 == Changelog ==  
+= 1.9.6 =
+* **Bug Fix**: Redundant commits were triggered under certain circumstances.
+* **Optimization**: Improved code quality.
 
 = 1.9.5 =
 * **Bug Fix**: Fix text domain issues.

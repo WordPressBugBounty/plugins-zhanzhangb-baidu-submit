@@ -11,7 +11,6 @@ class Zhanzhangb_Baidu_Submit_API {
         $this->utils = $utils;
         $this->normal_token = $this->utils->get_option('zhanzhangb_baidu_token');
         $this->realtime_token = $this->utils->get_option('zhanzhangb_baidu_realtime_token');
-        
         $this->allow_recent_submit = $this->utils->get_option('zhanzhangb_baidu_check');
     }
 
@@ -34,11 +33,13 @@ class Zhanzhangb_Baidu_Submit_API {
 
         $url = get_permalink($post_id);
 
-        if ($this->is_recent_submission($url)) {
-            return;
-        }
+		if ($this->is_recent_submission($post_id)) {
+			return;
+		}
 
         if ($this->should_submit($post_id)) {
+            $this->set_submission_lock($post_id);
+
             $success_normal = false;
             $success_realtime = false;
 
@@ -53,7 +54,6 @@ class Zhanzhangb_Baidu_Submit_API {
                     $success_normal = $this->submit_normal($url);
                 } else {
                     $this->logger->log("普通收录：今天已提交过该URL，跳过提交", 'info', $url);
-                    $this->set_submission_lock($url);
                 }
             }
 
@@ -68,13 +68,11 @@ class Zhanzhangb_Baidu_Submit_API {
                     $success_realtime = $this->submit_realtime($url);
                 } else {
                     $this->logger->log("快速抓取：今天已提交过该URL，跳过提交", 'info', $url);
-                    $this->set_submission_lock($url);
                 }
             }
 
             if ($success_normal || $success_realtime) {
                 $this->utils->record_submission($post_id, $success_normal, $success_realtime);
-                $this->set_submission_lock($url);
             }
         }
     }
@@ -134,13 +132,13 @@ class Zhanzhangb_Baidu_Submit_API {
         return in_array($post_type, $selected_types);
     }
     
-    private function is_recent_submission($url) {
-        $cache_key = 'zh_submit_' . md5($url);
+    private function is_recent_submission($post_id) {
+        $cache_key = 'zh_submit_' . 'post_' . intval($post_id);
         return (bool) wp_cache_get($cache_key, 'zhanzhangb_baidu_submit');
     }
     
-    private function set_submission_lock($url) {
-        $cache_key = 'zh_submit_' . md5($url);
+    private function set_submission_lock($post_id) {
+        $cache_key = 'zh_submit_' . 'post_' . intval($post_id);
         wp_cache_set($cache_key, 1, 'zhanzhangb_baidu_submit', 30);
     }
 }
