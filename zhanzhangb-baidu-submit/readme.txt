@@ -4,7 +4,7 @@ Donate link: [站长帮](https://www.zhanzhangb.cn/)
 Tags: SEO, Baidu
 Requires at least: 5.5
 Requires PHP: 7.0
-Tested up to: 6.9.1
+Tested up to: 7.0
 Stable tag: 1.9.6
 License: GNU General Public License (GPL) version 3
 License URI: [GNU General Public License (GPL) version 3](https://www.gnu.org/licenses/gpl-3.0.html)
